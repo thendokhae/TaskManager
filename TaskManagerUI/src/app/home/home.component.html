@@ -1,0 +1,152 @@
+<div class="row" style="margin-left:0px;margin-right:0px">
+    <h1>Wellcome back, {{loggedInUser.Name}} {{loggedInUser.Surname}}</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>To-Do</th>
+                <th>In Progress</th>
+                <th>Testing</th>
+                <th>Done</th>
+            </tr>
+            <tr>
+                <td>
+                    <div *ngFor="let task of tasks" style="width:25%">
+                        <div class="row" *ngIf="task.Status == Statuses.toDo" (click)="onTaskSelected(task.Id)">
+                            <div class="block-update-card status">
+                                <div class="to-do">
+                                </div>
+                                <div class="update-card-body">
+                                    <h4>Task No:{{task.Id}} {{task.Name}}</h4>
+                                    <p>
+                                        {{task.Description}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-primary" (click)="addTask()">Add</button>
+                    </div>
+                </td>
+                <td>
+                    <div *ngFor="let task of tasks" style="width:25%">
+                        <div class="row" *ngIf="task.Status == Statuses.inProgress" (click)="onTaskSelected(task.Id)">
+                            <div class="block-update-card status">
+                                <div class="in-progress">
+                                </div>
+                                <div class="update-card-body">
+                                    <h4>Task No:{{task.Id}} {{task.Name}}</h4>
+                                    <p>
+                                        {{task.Description}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div *ngFor="let task of tasks" style="width:25%">
+                        <div class="row" *ngIf="task.Status == Statuses.testing" (click)="onTaskSelected(task.Id)">
+                            <div class="block-update-card status">
+                                <div class="testing">
+                                </div>
+                                <div class="update-card-body">
+                                    <h4>Task No:{{task.Id}} {{task.Name}}</h4>
+                                    <p>
+                                        {{task.Description}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div *ngFor="let task of tasks">
+                        <div class="row" *ngIf="task.Status == Statuses.done" (click)="onTaskSelected(task.Id)">
+                            <div class="block-update-card status">
+                                <div class="done">
+                                </div>
+                                <div class="update-card-body">
+                                    <h4>Task No:{{task.Id}} {{task.Name}}</h4>
+                                    <p>
+                                        {{task.Description}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </thead>
+    </table>
+</div>
+<div *ngIf="isLoading">
+    <div class="spinner">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+    </div>
+</div>
+<div bsModal #childModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#003366;color:whitesmoke;">
+                <button type="button" class="close" aria-label="Close" (click)="hideChildModal()">
+          <span aria-hidden="true" style="color:whitesmoke;">&times;</span>
+        </button>
+                <h4 class="modal-title" *ngIf="errorMessage">Login Failed</h4>
+                <h4 class="modal-title">Task View</h4>
+            </div>
+            <div *ngIf="errorMessage">
+                <div class="modal-body" style="padding-bottom: 50px;padding-top: 30px;">
+                    <div class="col-sm-2">
+                        <span class="fa fa-exclamation-triangle" style="color: #FFB728;font-size:18pt;"></span>
+                    </div>
+                    <div class="col-sm-10">
+                        <p>{{errorMessage}}</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" (click)="hideChildModal()">Ok</button>
+                </div>
+            </div>
+            <div class="modal-body" *ngIf="!errorMessage">
+                <div class="row" style="padding-left:10px;padding-right:10px;">
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select class="form-control" [(ngModel)]="selectedTask.Status">
+                    <option [value]="Statuses.toDo">{{Statuses.toDo}}</option>
+                    <option [value]="Statuses.inProgress">{{Statuses.inProgress}}</option>
+                    <option [value]="Statuses.testing">{{Statuses.testing}}</option>
+                    <option [value]="Statuses.done">{{Statuses.done}}</option>
+                </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" class="form-control" [(ngModel)]="selectedTask.Name">
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <input type="text" class="form-control" [(ngModel)]="selectedTask.Description">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <nav>
+                        <ul class="pager pull-right">
+                            <li *ngIf="!isAddTask">
+                                <button type="button" class="btn btn-success" (click)="updateTask(selectedTask)">Update</button>
+                            </li>
+                            <li *ngIf="!isAddTask">
+                                <button type="button" class="btn btn-danger" (click)="deleteTask(selectedTask.Id)">Delete</button>
+                            </li>
+                            <li *ngIf="isAddTask">
+                                <button type="button" class="btn btn-danger" (click)="saveTask(selectedTask)">Save</button>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

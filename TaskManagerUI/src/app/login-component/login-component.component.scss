@@ -1,0 +1,180 @@
+@import '../../assets/bootstrap/variables-blue';
+
+@media only screen
+	and (min-device-width: 360px) 
+	and (max-device-width: 412px) 
+	and (-webkit-min-device-pixel-ratio: 1){
+		img{
+			max-width: 220px !important;
+		}
+		h1{
+			font-size: 23px !important;
+			small{
+				font-size:14px !important;
+			}
+		}
+
+	}
+
+@media only screen
+	and (max-device-width: 320px) 
+	and (-webkit-min-device-pixel-ratio: 1){
+		img{
+			max-width: 150px !important;
+		}
+		h1{
+			font-size: 20px !important;
+			small{
+				font-size:12px !important;
+			}
+		}
+
+	}
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 768px)
+  and (max-device-width: 1023px) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+
+	.form-group{
+		padding-left: 10% !important;
+		padding-right: 10% !important;
+	}
+	#login{
+		padding-top: 20%;
+	}
+  }
+
+
+@media only screen 
+  and (min-device-width: 1024px)
+  and (max-device-width: 1025px) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+
+	.form-group{
+		padding-left: 5% !important;
+		padding-right: 5% !important;
+	}
+	#login{
+		padding-top: 20%;
+	}
+  }
+
+@media(min-width:568px)
+	and(max-width: 736px){
+		#login{
+			padding-top: 0 !important;
+		}
+	}
+.login-page {
+	background: $brand-primary;
+	position: relative;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	overflow: auto;
+	text-align: center;
+	color: #fff;
+	padding: 3em;
+	height: 100vh !important;
+	overflow: hidden;
+	.col-lg-4 {
+		padding :0;
+	}
+	a {
+		cursor: pointer;
+	}
+	.input-lg {
+	    height: 46px;
+	    padding: 10px 16px;
+	    font-size: 18px ;
+	    line-height: 1.3333333;
+	    border-radius: 0;
+	}
+	.input-underline {
+	    background: 0 0;
+	    border: none;
+	    box-shadow: none;
+	    border-bottom: 2px solid;
+		border-bottom-color: rgba(255,255,255,.5);
+	    color: #FFF;
+	    border-radius: 0;
+	}
+	.input-underline:focus {
+	    border-bottom: 2px solid #fff;
+	    box-shadow: none;
+	}
+	.rounded-btn{
+		-webkit-border-radius: 50px;
+		    	border-radius: 50px;
+		color: rgba(255,255,255,0.8);
+		background: $brand-primary;
+		border: 2px solid;
+		font-size: 18px;
+	    line-height: 40px;
+	    padding: 0 25px;
+	}
+	.rounded-btn:hover,.rounded-btn:focus,.rounded-btn:active,.rounded-btn:visited{
+		color: rgba(255,255,255,1);
+		border: 2px solid rgba(255,255,255,1);
+		outline: none;
+	}
+
+	h1 {
+		font-weight: 300;
+		margin-top: 20px;
+    	margin-bottom: 10px;
+    	font-size: 36px;
+		small {
+			color: rgba(255,255,255,0.7);
+			font-size: 20px;
+			font-weight: 300;
+		}
+	}
+
+	img{
+		max-width: 320px;
+	}
+
+	/*#logo{
+		height : 80px;
+	}*/
+
+	.form-group {
+		padding: 8px 0;
+		input::-webkit-input-placeholder {
+		color: whitesmoke ;
+		}
+		 
+		input:-moz-placeholder { /* Firefox 18- */
+		color: whitesmoke ;  
+		}
+		 
+		input::-moz-placeholder {  /* Firefox 19+ */
+		color: whitesmoke ;  
+		}
+		 
+		input:-ms-input-placeholder {  
+		color: whitesmoke;  
+		}
+	}
+	.form-content {
+		padding: 40px 0;
+	}
+
+	h1 span {
+		position: relative;
+		padding-bottom: 5px;
+	}
+	h1 span::after{
+		position: absolute; 
+		left: 0; 
+		bottom: 0; 
+		width: 100%; 
+		height: 1px; 
+		border-bottom: 2px solid whitesmoke; 
+		content: ""
+	}
+}
